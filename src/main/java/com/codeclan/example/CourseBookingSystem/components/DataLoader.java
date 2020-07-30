@@ -36,8 +36,8 @@ public class DataLoader implements ApplicationRunner {
         Booking booking1 = new Booking("4th May 2020", course1, customer1);
         bookingRepository.save(booking1);
 
-        customer1.addBookingToCustomer(booking1);
-        customerRepository.save(customer1);
+//        customer1.addBookingToCustomer(booking1);
+//        customerRepository.save(customer1);
 
 
 
@@ -51,15 +51,15 @@ public class DataLoader implements ApplicationRunner {
         Booking booking2 = new Booking("19th June 2020", course2, customer2);
         bookingRepository.save(booking2);
 
-        customer2.addBookingToCustomer(booking2);
-        customerRepository.save(customer2);
+//        customer2.addBookingToCustomer(booking2);
+//        customerRepository.save(customer2);
 
 
 
         Booking booking3 = new Booking("19th June 2020", course1, customer2);
         bookingRepository.save(booking3);
 
-        customer2.addBookingToCustomer(booking3);
-        customerRepository.save(customer2);
+//        customer2.addBookingToCustomer(booking3);
+//        customerRepository.save(customer2);
     }
 }

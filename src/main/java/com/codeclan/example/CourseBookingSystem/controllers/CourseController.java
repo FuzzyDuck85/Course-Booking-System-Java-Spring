@@ -15,7 +15,15 @@ public class CourseController {
     CourseRepository courseRepository;
 
     @GetMapping(value = "/courses")
-    public ResponseEntity<List<Course>> findAllCourses(){
+    public ResponseEntity<List<Course>> findAllCoursesByFilter(
+            @RequestParam(name = "rating", required = false) Integer rating
+    ){
+        if (rating != null){
+            ResponseEntity foundRating =  new ResponseEntity<>(courseRepository.findByRating(rating), HttpStatus.OK);
+            if(foundRating.hasBody()){
+                return foundRating;
+            }
+        }
         return new ResponseEntity<>(courseRepository.findAll(), HttpStatus.OK);
     }
 
@@ -29,4 +37,15 @@ public class CourseController {
         courseRepository.save(course);
         return new ResponseEntity<>(course, HttpStatus.CREATED);
     }
+
+    @GetMapping(value ="/courses/bookings/customers")
+    public ResponseEntity<List<Course>> findCoursesByBookingsCustomerId(
+            @RequestParam (name = "id", required = false) Long id
+    ){
+        if (id != null){
+            return new ResponseEntity<>(courseRepository.findByBookingsCustomerId(id), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(courseRepository.findAll(), HttpStatus.OK);
+    }
+
 }

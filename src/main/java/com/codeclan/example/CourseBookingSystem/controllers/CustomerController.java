@@ -32,4 +32,14 @@ public class CustomerController {
         customerRepository.save(customer);
         return new ResponseEntity<>(customer, HttpStatus.CREATED);
     }
+
+    @GetMapping(value = "/customers/bookings/courses")
+    public ResponseEntity<List<Customer>> findCustomersByCourse(
+            @RequestParam (name = "name", required = false) String name
+    ){
+        if (name != null){
+            return new ResponseEntity<>(customerRepository.findByBookingsCourseName(name), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(customerRepository.findAll(), HttpStatus.OK);
+    }
 }
